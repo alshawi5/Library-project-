@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title><%= book.title %> by <%= book.author %></title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f0f0;
+      color: #333;
+      padding: 20px;
+    }
+    .container {
+      background-color: #e0e0e0;
+      padding: 30px;
+      border-radius: 10px;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    h1, h2 {
+      text-align: center;
+      color: #555;
+    }
+    p {
+      margin: 10px 0;
+    }
+    .actions {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 20px;
+    }
+    .actions a, .actions button {
+      padding: 10px 20px;
+      border-radius: 5px;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    .actions a {
+      background-color: #333;
+      color: white;
+    }
+    .actions a:hover {
+      background-color: #555;
+    }
+    .actions button {
+      background-color: #c0392b;
+      color: white;
+    }
+    .actions button:hover {
+      background-color: #e74c3c;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <%- include('../partials/_navbar.ejs') %>
+
+    <h1><%= book.title %></h1>
+    <h2>by <%= book.author %> (<%= book.publishYear %>)</h2>
+
+    <p><strong>ISBN:</strong> <%= book.ISBN %></p>
+    <p><strong>Description:</strong> <%= book.description %></p>
+    <p><strong>Available:</strong> <%= book.isAvailable ? 'Yes' : 'No' %></p>
+
+    <% if (user && user.role === 'admin') { %>
+      <div class="actions">
+        <a href="/Books/<%= book._id %>/edit">Edit Book</a>
+        <form action="/Books/<%= book._id %>?_method=DELETE" method="POST" style="display:inline;">
+          <button type="submit">Delete Book</button>
+        </form>
+      </div>
+    <% } %>
+  </div>
+</body>
+</html>

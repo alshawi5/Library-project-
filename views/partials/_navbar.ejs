@@ -1,0 +1,16 @@
+<nav style="background-color:#333;padding:10px;">
+  <% if (user) { %>
+    <a href="/" style="color:white;margin-right:10px;">Home</a>
+    <a href="/Books" style="color:white;margin-right:10px;">All Books</a>
+
+    <% if (user.role === 'admin') { %>
+      <a href="/Books/new" style="color:white;margin-right:10px;">Add New Book</a>
+      <a href="/admin/dashboard" style="color:white;margin-right:10px;">Admin Dashboard</a>
+    <% } %>
+
+    <a href="/auth/sign-out" style="color:white;">Sign Out</a>
+  <% } else { %>
+    <a href="/auth/sign-up" style="color:white;margin-right:10px;">Sign Up</a>
+    <a href="/auth/sign-in" style="color:white;">Sign In</a>
+  <% } %>
+</nav>
