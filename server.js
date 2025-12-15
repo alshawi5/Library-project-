@@ -1,3 +1,4 @@
+// HELP
 require('dotenv').config();
 require('./config/database.js');
 
@@ -27,6 +28,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(methodOverride('_method'));
 app.use(morgan('dev'));
 
+// session handling 
 app.use(
   session({
     secret: process.env.SESSION_SECRET,
@@ -38,7 +40,6 @@ app.use(
   })
 );
 
-// Locals
 app.use(passUserToView);
 
 // ---------- PUBLIC ROUTES ----------
@@ -52,8 +53,6 @@ app.use('/auth', authCtrl);
 // ---------- PROTECTED ROUTES ----------
 app.use(isSignedIn);
 app.use('/Books', BooksCtrl);
-
-
 
 app.listen(port, () => {
   console.log(`The express app is ready on port ${port}!`);

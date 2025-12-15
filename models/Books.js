@@ -29,11 +29,11 @@ const booksSchema = new mongoose.Schema(
     isAvailable: {
       type: Boolean,
       required: true,
-      default: true, // default to available
+      default: true, 
     },
   },
   {
-    timestamps: true, // adds createdAt and updatedAt automatically
+    timestamps: true, 
   }
 );
 

@@ -9,18 +9,18 @@ const adminOnly = require('../middleware/is-admin');
 
 /* ============================
    ADMIN ONLY — CREATE / EDIT / DELETE
-============================ */
+   ============================ */
 
-// Show create form
+// Show create form only admin 
 router.get('/new', isSignedIn, adminOnly, (req, res) => {
   res.render('Books/new.ejs');
 });
 
-// Create book
+// Create book only admin 
 router.post('/', isSignedIn, adminOnly, async (req, res) => {
   try {
     req.body.owner = req.session.user._id;
-    req.body.isAvailable = req.body.isAvailable === 'true'; // convert to boolean
+    req.body.isAvailable = req.body.isAvailable === 'true'; 
     await Books.create(req.body);
     res.redirect('/Books');
   } catch (error) {
@@ -29,7 +29,7 @@ router.post('/', isSignedIn, adminOnly, async (req, res) => {
   }
 });
 
-// Show edit form
+// Show edit form only admin 
 router.get('/:id/edit', isSignedIn, adminOnly, async (req, res) => {
   try {
     const book = await Books.findById(req.params.id);
@@ -41,7 +41,7 @@ router.get('/:id/edit', isSignedIn, adminOnly, async (req, res) => {
   }
 });
 
-// Update book
+// Update book only admin 
 router.put('/:id', isSignedIn, adminOnly, async (req, res) => {
   try {
     req.body.isAvailable = req.body.isAvailable === 'true';
@@ -53,7 +53,7 @@ router.put('/:id', isSignedIn, adminOnly, async (req, res) => {
   }
 });
 
-// Delete book
+// Delete book only admin
 router.delete('/:id', isSignedIn, adminOnly, async (req, res) => {
   try {
     await Books.findByIdAndDelete(req.params.id);
@@ -67,9 +67,8 @@ router.delete('/:id', isSignedIn, adminOnly, async (req, res) => {
 
 /* ============================
    PUBLIC — USERS CAN VIEW ONLY
-============================ */
-
-// Show all books
+   ============================ */
+// Show all books in view all books 
 router.get('/', async (req, res) => {
   try {
     const books = await Books.find().populate('owner');
@@ -79,8 +78,7 @@ router.get('/', async (req, res) => {
     res.redirect('/');
   }
 });
-
-// Show a single book
+// Show a single book by id 
 router.get('/:id', async (req, res) => {
   try {
     const book = await Books.findById(req.params.id).populate('owner');

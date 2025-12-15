@@ -15,13 +15,11 @@ router.post('/sign-up', async (req, res) => {
   try {
     const { username, password, confirmPassword } = req.body;
 
-    // Check if username already exists
     const existingUser = await User.findOne({ username });
     if (existingUser) {
       return res.send('Username or Password is invalid');
     }
 
-    // Validate password
     if (password !== confirmPassword) {
       return res.send('Username or Password is invalid');
     }
