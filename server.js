@@ -4,7 +4,7 @@ require('./config/database.js');
 
 const express = require('express');
 const path = require('path');
-
+const adminRoutes = require('./controllers/admin');
 const app = express();
 // Sessions
 const session = require('express-session');
@@ -53,6 +53,10 @@ app.use('/auth', authCtrl);
 // ---------- PROTECTED ROUTES ----------
 app.use(isSignedIn);
 app.use('/Books', BooksCtrl);
+
+
+// admin routes 
+app.use('/admin', adminRoutes);
 
 app.listen(port, () => {
   console.log(`The express app is ready on port ${port}!`);
