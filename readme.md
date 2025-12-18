@@ -1,6 +1,6 @@
 # project IDEA :
 
-A simple libary book shop to view books 
+A simple libary book shop to view books (MEN Stack)
 
 
 # ERD: 
@@ -8,11 +8,14 @@ A simple libary book shop to view books
 
 
 
+#picture for the website 
 
 
-
+![alt text](<Screenshot 2025-12-18 at 9.06.39 AM.png>)
 
 
 # future improvents 
+1 - borrow function 
+2- add a cart 
 
 

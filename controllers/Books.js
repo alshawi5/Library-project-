@@ -68,7 +68,7 @@ router.delete('/:id', isSignedIn, adminOnly, async (req, res) => {
 /* ============================
    PUBLIC — USERS CAN VIEW ONLY
    ============================ */
-// Show all books in view all books 
+   
 router.get('/', async (req, res) => {
   try {
     const books = await Books.find().populate('owner');
@@ -78,7 +78,7 @@ router.get('/', async (req, res) => {
     res.redirect('/');
   }
 });
-// Show a single book by id 
+
 router.get('/:id', async (req, res) => {
   try {
     const book = await Books.findById(req.params.id).populate('owner');
